@@ -22,3 +22,12 @@ class Audit(models.Model):
 
 class Rule(models.Model):
 	audit = models.OneToOneField(Audit, on_delete=models.CASCADE)
+	rule_name = models.CharField(max_length=50)
+
+	#metadata
+
+	created = models.DateTimeField(auto_now_add=True)
+	modified = models.DateTimeField(auto_now=True)
+
+	def __str__(self):
+		return self.rule_name
