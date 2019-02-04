@@ -16,4 +16,9 @@ class Audit(models.Model):
 
 	created = models.DateTimeField(auto_now_add=True)
 	modified = models.DateTimeField(auto_now=True)
-	
+
+	def __str__(self):
+		return self.process_to_be_audited
+
+class Rule(models.Model):
+	audit = models.OneToOneField(Audit, on_delete=models.CASCADE)
