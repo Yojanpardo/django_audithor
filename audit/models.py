@@ -31,3 +31,36 @@ class Rule(models.Model):
 
 	def __str__(self):
 		return self.rule_name
+
+class Numeral(models.Model):
+	rule = models.ForeignKey(Rule, on_delete=models.CASCADE)
+	numeral = models.CharField(max_length=8)
+	title = models.CharField(max_length=255)
+
+	#metadata
+
+	created = models.DateTimeField(auto_now_add=True)
+	modified = models.DateTimeField(auto_now=True)
+
+	def __str__(self):
+		return '{}) {}'.format(self.numeral,self.title)
+
+class Question(models.Model):
+	CONFLICTS = (
+		('none','Ninguno'),
+		('observation','Observación'),
+		('find','Hallazgo'),
+	)
+
+	numeral = models.ForeignKey(Numeral, on_delete=models.CASCADE)
+	question = models.CharField(max_length=255)
+	method = models.TextField(max_length=255)
+	conflict = models.CharField(max_length=10, choices=CONFLICTS)
+
+	#metadata
+
+	created = models.DateTimeField(auto_now_add=True)
+	modified = models.DateTimeField(auto_now=True)
+
+	def __str__(self):
+		return self.question
