@@ -1,3 +1,34 @@
-{% for question in questions %}
-	{{question}}
-{% endfor %}
+{% extends "base.html" %}
+{% block title %}
+    {{numeral}}
+{% endblock title %}
+{% block container %}
+    <div class="container">
+    	<h1 class="mt-5 pt-5">{{numeral}}</h1>
+    	<h3>Selecciona la pregunta</h3>
+    	<div class="row justify-content-center mt-5">
+    		<div class="col-sm-12 col-md-10 col-lg-8 mt-5">
+    			<table class="table table-striped border">
+    				<thead>
+    					<tr>
+    						<th>#</th>
+    						<th>Pregunta</th>
+    						<th class="text-center">Acción</th>
+    						<th class="text-center">Completed</th>
+    					</tr>
+    				</thead>
+    				<tbody>
+    					{% for question in questions %}
+	    					<tr>
+	    						<th>{{question.numeral.numeral}}</th>
+	    						<td>{{question.question}}</td>
+	    						<td class="text-center"><a href="{% url 'audit:question' numeral.rule.audit.pk numeral.rule.pk numeral.pk question.pk %}" class="btn btn-primary">visualizar</a></td>
+	    						<td class="text-center">{% if question.conflict %}<i class="fas fa-check"></i>{% else %}<i class="fas fa-times"></i>{% endif %}</td>
+	    					</tr>
+    					{% endfor %}
+    				</tbody>
+    			</table>
+    		</div>
+    	</div>
+    </div>
+{% endblock container %}

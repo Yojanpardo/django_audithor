@@ -56,7 +56,9 @@ class Question(models.Model):
 	numeral = models.ForeignKey(Numeral, on_delete=models.CASCADE)
 	question = models.CharField(max_length=255)
 	method = models.TextField(max_length=255, blank=True,null=True)
-	conflict = models.CharField(max_length=10, choices=CONFLICTS, blank=True, null=True)
+	conflict = models.CharField(max_length=11, choices=CONFLICTS, blank=True, null=True)
+	conflict_description = models.TextField(blank=True,null=True)
+	evidence = models.ImageField(upload_to='evidences',blank=True,null=True)
 
 	#metadata
 
