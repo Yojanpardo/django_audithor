@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}
+    Audits
+{% endblock title %}
+{% block container %}
+<div class="container">
+	<h1 class="mt-5 pt-5">Selecciona la auditoria que vas a ejecutar</h1>
+	{% for audit in audits %}
+		<div class="row justify-content-center">
+				<div class="col-sm-12 col-md-10 col-lg-8">
+				<div class="card mt-4 ml-5 mr-5">
+				  <div class="card-header">
+				    {{audit|title}}
+				  </div>
+				  <div class="card-body">
+				    <h5 class="card-title">{{audit.audited_name|title}}</h5>
+				    <p class="card-text">{{audit.audit_scope|capfirst}}.</p>
+				    <a href="{% url 'audit:rules' audit.pk %}" class="btn btn-primary">Revisar</a>
+				  </div>
+				</div>
+				</div>
+		</div>
+	{% endfor %}
+</div>
+		
+{% endblock container %}

@@ -31,7 +31,7 @@ class Rule(models.Model):
 
 	def __str__(self):
 		return self.rule_name
-
+ 	
 class Numeral(models.Model):
 	rule = models.ForeignKey(Rule, on_delete=models.CASCADE)
 	numeral = models.CharField(max_length=8)
@@ -54,8 +54,8 @@ class Question(models.Model):
 
 	numeral = models.ForeignKey(Numeral, on_delete=models.CASCADE)
 	question = models.CharField(max_length=255)
-	method = models.TextField(max_length=255)
-	conflict = models.CharField(max_length=10, choices=CONFLICTS)
+	method = models.TextField(max_length=255, blank=True,null=True)
+	conflict = models.CharField(max_length=10, choices=CONFLICTS, blank=True, null=True)
 
 	#metadata
 
