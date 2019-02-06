@@ -23,6 +23,7 @@ class Audit(models.Model):
 class Rule(models.Model):
 	audit = models.OneToOneField(Audit, on_delete=models.CASCADE)
 	rule_name = models.CharField(max_length=50)
+	rule_title = models.CharField(max_length=100)
 
 	#metadata
 

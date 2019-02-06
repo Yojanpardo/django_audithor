@@ -4,41 +4,29 @@
 {% endblock title %}
 {% block container %}
 <div class="container">
-	<h1 class="mt-5 pt-5">Elige la norma a auditar</h1>
+	<h1 class="mt-5 pt-5">{{audit}}</h1>
+	<h3>Selecciona la norma a auditar</h3>
 	<div class="row justify-content-center">
-    <table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
-    {% for rule in rules %}
-    	
-    {% endfor %}
+		<div class="col-sm-12 col-md-10 col-lg-8 col-xl-6 mt-5 	">
+	    <table class="table table-striped border">
+			  <thead>
+			    <tr>
+			      <th scope="col">#</th>
+			      <th scope="col">Rule title</th>
+			      <th class="text-center">action</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    {% for rule in rules %}
+				    <tr>
+				      <th scope="row">{{rule.rule_name}}</th>
+				      <td>{{rule.rule_title}}</td>
+				      <td class="text-center"><a href="{% url 'audit:numerals' audit.pk rule.pk %}" class="btn btn-primary">Revisar</a></td>
+				    </tr>
+			    {% endfor %}
+			  </tbody>
+			</table>
+		</div>
 	</div>
 </div>
 {% endblock container %}	
