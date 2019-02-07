@@ -1,15 +1,23 @@
 {% extends "base.html" %}
+{% load l10n %}
 {% block title %}
     Resultados
 {% endblock title %}
 {% block container %}
+<style>
+	.progress{
+		height: 1.6rem;
+	}
+</style>
     <div class="container pt-5">
     	<div class="row justify-content-center mt-5 pt-5">
     		<div class="col-sm-12 col-md-10 col-lg-8">
-    			<h1>Información obtenida</h1>
+    			<h1>{{audit}}</h1>
+    			<h3>Información obtenida</h3>
     			<table class="table table-striped mt-5 border">
     				<thead>
     					<tr>
+    						<th style="width:3rem"></th>
     						<th>Tipos de conflictos</th>
     						<th>Cantidad</th>
     						<th>Porcentaje</th>
@@ -17,28 +25,52 @@
     				</thead>
     				<tbody>
     					<tr>
-    						<th>Ninguno</th>
-    						<th>{{questions.none}}</th>
-    						<th>{{questions.none_percent|floatformat:1}}%</th>
+    						<th class="bg-success rounded pt-1"><span></span></th>
+    						<th>Sin novedad</th>
+    						<td>{{questions.none}}</td>
+    						<td>{{questions.none_percent|floatformat:1}}%</td>
     					</tr>
     					<tr>
+    						<th class="bg-warning rounded"></th>
     						<th>Observaciones</th>
-    						<th>{{questions.observation}}</th>
-    						<th>{{questions.observation_percent|floatformat:1}}%</th>
+    						<td>{{questions.observation}}</td>
+    						<td>{{questions.observation_percent|floatformat:1}}%</td>
     					</tr>
     					<tr>
+    						<th class="bg-danger rounded"></th>
     						<th>Hallazgos</th>
-    						<th>{{questions.find}}</th>
-    						<th>{{questions.find_percent|floatformat:1}}%</th>
+    						<td>{{questions.find}}</td>
+    						<td>{{questions.find_percent|floatformat:1}}%</td>
     					</tr>
     					<tr>
+    						<th class="bg-secondary rounded"></th>
+    						<th>Preguntas sin responder</th>
+    						<td>{{questions.unanswered_questions}}</td>
+    						<td>{{questions.unanswered_percent|floatformat:1}}%</td>
+    					</tr>
+    					<tr>
+    						<th></th>
     						<th>Total preguntas</th>
-    						<th>{{questions.total}}</th>
-    						<th>100%</th>
+    						<td>{{questions.total}}</td>
+    						<td>100%</td>
     					</tr>
     				</tbody>
     			</table>
+    			<div class="progress mt-5">
+				  <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" id="questionNonePercent" aria-valuenow="{{questions.none_percent}}" aria-valuemin="0" aria-valuemax="100"></div>
+				  <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" id="questionObservationPercent" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+				  <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" id="questionFindPercent" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+				  <div class="progress-bar progress-bar-striped progress-bar-animated bg-secondary" role="progressbar" id="unansweredPercent" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+				</div>
     		</div>
     	</div>
     </div>
+    <script>
+    window.onload = function loadPercents() {
+    	document.getElementById('questionNonePercent').style.width='{{questions.none_percent|unlocalize}}%';
+    	document.getElementById('questionObservationPercent').style.width='{{questions.observation_percent|unlocalize}}%';
+    	document.getElementById('questionFindPercent').style.width='{{questions.find_percent|unlocalize}}%';
+    	document.getElementById('unansweredPercent').style.width='{{questions.unanswered_percent|unlocalize}}%';
+    };
+    </script>
 {% endblock container %}

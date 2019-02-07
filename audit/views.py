@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView, UpdateView
 from .models import Audit, Rule, Numeral, Question
 from django.urls import reverse_lazy
+from django.http import Http404
+
 # Create your views here.
 
 class AuditListView(ListView):
@@ -63,14 +65,16 @@ class AuditRankingView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         audit = self.get_object()
-        questions = Question.objects.all()
+        questions = Question.objects.filter(numeral__rule__audit=audit)
         total_questions = len(questions)
-        questions_none = len(Question.objects.filter(conflict='none'))
-        questions_observation = len(Question.objects.filter(conflict='observation'))
-        questions_find = len(Question.objects.filter(conflict='find'))
+        questions_none = len(questions.filter(conflict='none'))
+        questions_observation = len(questions.filter(conflict='observation'))
+        questions_find = len(questions.filter(conflict='find'))
         questions_none_percent = (questions_none*100)/total_questions
         questions_find_percent = (questions_find*100)/total_questions
         questions_observation_percent = (questions_observation*100)/total_questions
+        unanswered_questions = total_questions-(questions_observation+questions_find+questions_none)
+        unanswered_percent = (unanswered_questions*100)/total_questions
         context['questions'] = {
             'questions':questions,
             'total':total_questions,
@@ -79,6 +83,8 @@ class AuditRankingView(DetailView):
             'none':questions_none,
             'none_percent':questions_none_percent,
             'find_percent':questions_find_percent,
-            'observation_percent':questions_observation_percent
+            'observation_percent':questions_observation_percent,
+            'unanswered_questions':unanswered_questions,
+            'unanswered_percent':unanswered_percent
         }
         return context
