@@ -1,1 +1,44 @@
-{{questions}}
+{% extends "base.html" %}
+{% block title %}
+    Resultados
+{% endblock title %}
+{% block container %}
+    <div class="container pt-5">
+    	<div class="row justify-content-center mt-5 pt-5">
+    		<div class="col-sm-12 col-md-10 col-lg-8">
+    			<h1>Información obtenida</h1>
+    			<table class="table table-striped mt-5 border">
+    				<thead>
+    					<tr>
+    						<th>Tipos de conflictos</th>
+    						<th>Cantidad</th>
+    						<th>Porcentaje</th>
+    					</tr>
+    				</thead>
+    				<tbody>
+    					<tr>
+    						<th>Ninguno</th>
+    						<th>{{questions.none}}</th>
+    						<th>{{questions.none_percent|floatformat:1}}%</th>
+    					</tr>
+    					<tr>
+    						<th>Observaciones</th>
+    						<th>{{questions.observation}}</th>
+    						<th>{{questions.observation_percent|floatformat:1}}%</th>
+    					</tr>
+    					<tr>
+    						<th>Hallazgos</th>
+    						<th>{{questions.find}}</th>
+    						<th>{{questions.find_percent|floatformat:1}}%</th>
+    					</tr>
+    					<tr>
+    						<th>Total preguntas</th>
+    						<th>{{questions.total}}</th>
+    						<th>100%</th>
+    					</tr>
+    				</tbody>
+    			</table>
+    		</div>
+    	</div>
+    </div>
+{% endblock container %}

@@ -8,6 +8,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav text-uppercase ml-auto">
+        <!--
         <li class="nav-item">
           <a class="nav-link js-scroll-trigger" href="#register">Datos</a>
         </li>
@@ -19,13 +20,17 @@
         </li>
         <li class="nav-item">
           <a class="nav-link js-scroll-trigger" href="#about">#6</a>
-        </li>
+        </li-->
+        {% if audit %}
+            
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#indicador">Indicador</a>
+          <a class="nav-link js-scroll-trigger text-warning" href="{% url 'audit:detail' audit.pk %}">Datos de la auditoria</a>
         </li>
+        
+        {% endif %}<!--
         <li class="nav-item">
           <a class="nav-link js-scroll-trigger" href="#contact">Contacto</a>
-        </li>
+        </li-->
         <li class="nav-item">
           <a class="nav-link js-scroll-trigger text-warning" href="#">Log Out</a>
         </li>

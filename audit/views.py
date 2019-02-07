@@ -57,14 +57,28 @@ class QuestionUpdateView(UpdateView):
     		})
 
 class AuditRankingView(DetailView):
-	model = Audit
-	template_name = "audit/ranking.html"
+    model = Audit
+    template_name = "audit/ranking.html"
 
-	def get_context_data(self, **kwargs):
-		context = super().get_context_data(**kwargs)
-		audit = self.get_object()
-		rules = Rule.objects.filter(audit=audit)
-		numerals = Numeral.objects.filter(rule=rules)
-		questions = Question.objects.filter(numeral=numeral)
-		context['questions'] = questions
-		return context
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        audit = self.get_object()
+        questions = Question.objects.all()
+        total_questions = len(questions)
+        questions_none = len(Question.objects.filter(conflict='none'))
+        questions_observation = len(Question.objects.filter(conflict='observation'))
+        questions_find = len(Question.objects.filter(conflict='find'))
+        questions_none_percent = (questions_none*100)/total_questions
+        questions_find_percent = (questions_find*100)/total_questions
+        questions_observation_percent = (questions_observation*100)/total_questions
+        context['questions'] = {
+            'questions':questions,
+            'total':total_questions,
+            'observation':questions_observation,
+            'find':questions_find,
+            'none':questions_none,
+            'none_percent':questions_none_percent,
+            'find_percent':questions_find_percent,
+            'observation_percent':questions_observation_percent
+        }
+        return context
