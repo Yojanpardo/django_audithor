@@ -23,7 +23,7 @@
 	    						<th>{{question.numeral.numeral}}</th>
 	    						<td>{{question.question}}</td>
 	    						<td class="text-center"><a href="{% url 'audit:question' numeral.rule.audit.pk numeral.rule.pk numeral.pk question.pk %}" class="btn btn-primary">visualizar</a></td>
-	    						<td class="text-center">{% if question.conflict %}<i class="fas fa-check"></i>{% else %}<i class="fas fa-times"></i>{% endif %}</td>
+	    						<td class="text-center">{% if question.conflict %}<i class="fas fa-check text-success"></i>{% else %}<i class="fas fa-times text-danger"></i>{% endif %}</td>
 	    					</tr>
     					{% endfor %}
     				</tbody>

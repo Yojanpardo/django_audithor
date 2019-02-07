@@ -15,7 +15,8 @@
 				  <div class="card-body">
 				    <h5 class="card-title">Persona encargada: {{audit.audited_name|title}}</h5>
 				    <p class="card-text">Alcance de la auditoria: {{audit.audit_scope|capfirst}}.</p>
-				    <a href="{% url 'audit:rules' audit.pk %}" class="btn btn-primary">Revisar</a>
+				    <a href="{% url 'audit:rules' audit.pk %}" class="btn btn-primary">Auditar</a>
+				    <a class="btn btn-success float-right" href="{% url 'audit:detail' audit.pk %}">Estadisticas de la auditoria</a>
 				  </div>
 				</div>
 				</div>

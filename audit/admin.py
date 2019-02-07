@@ -16,4 +16,19 @@ class NumeralAdmin(admin.ModelAdmin):
 
 @admin.register(models.Question)
 class QuestionAdmin(admin.ModelAdmin):
-	pass
+	list_display = (
+		'question',
+		'numeral',
+	)
+	list_filter = (
+		'numeral',
+		'numeral__rule',
+	)
+	fieldsets = (
+		('Audit requires',{
+			'fields':(('numeral','question'),)
+			}),
+		('Audit results',{
+			'fields':(('conflict','evidence',),('method','conflict_description',),)
+			}),
+	)
