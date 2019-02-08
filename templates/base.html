@@ -13,6 +13,7 @@
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="icon" href="{% static 'img/icon.ico' %}">
 
     <!-- Custom fonts for this template -->
     <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
@@ -23,7 +24,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
     <!-- Custom styles for this template -->
-    <link href="{% static 'css/agency.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/agency.css' %}" rel="stylesheet">
 
   </head>
 
@@ -40,7 +41,13 @@
     <!-- Contact form JavaScript -->
     <script src="{% static 'js/jqBootstrapValidation.js' %}"></script>
     <script src="{% static 'js/contact_me.js' %}"></script>
-
+    <script>
+        $(document).ready(function () {
+            if ($("body").height() <  $(window).height()) {
+            $("footer").css({"position":"absolute", "bottom" : "0px"});
+            }
+        });
+    </script>
     <!-- Custom scripts for this template -->
     <script src="{% static 'js/agency.min.js' %}"></script>
   </body>

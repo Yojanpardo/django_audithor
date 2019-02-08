@@ -1,7 +1,7 @@
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top" id="mainNav">
   <div class="container">
-    <a class="navbar-brand js-scroll-trigger" href="{% url 'home' %}">Audithor</a>
+    <a class="navbar-brand js-scroll-trigger" href="{% url 'home' %}"><i class="fas fa-gavel pr-2"></i>Audithor</a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       Menu
       <i class="fas fa-bars"></i>
@@ -24,16 +24,16 @@
         {% if audit %}
             
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger text-warning" href="{% url 'audit:detail' audit.pk %}">Datos de la auditoria</a>
+          <a class="nav-link js-scroll-trigger text-warning font-weight-bold" href="{% url 'audit:detail' audit.pk %}"><i class="far fa-chart-bar pr-1"></i>Ver estadisticas de Auditoria</a>
         </li>
         
         {% endif %}<!--
         <li class="nav-item">
           <a class="nav-link js-scroll-trigger" href="#contact">Contacto</a>
         </li-->
-        <li class="nav-item">
+        <!--<li class="nav-item">
           <a class="nav-link js-scroll-trigger text-warning" href="#">Log Out</a>
-        </li>
+        </li>-->
       </ul>
     </div>
   </div>

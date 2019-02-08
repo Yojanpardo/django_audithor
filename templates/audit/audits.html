@@ -3,20 +3,38 @@
     Audits
 {% endblock title %}
 {% block container %}
-<div class="container">
-	<h1 class="mt-5 pt-5">Selecciona el proceso que vas a auditar</h1>
-	{% for audit in audits %}
-		<div class="row justify-content-center">
+<div class="container" style="margin-top: 5rem;">
+	<div class="jumbotron text-center">
+		<h1 class="text-uppercase">Procesos</h1>
+		<hr>
+		<h5>Selecciona el proceso que vas a auditar.</h5>
+	</div>
+	<div class="container">
+	<a href="" class="btn btn-success btn-sm btn-block text-uppercase"><i class="fas fa-plus pr-1"></i>Crear nuevo proceso</a>
+	</div>
+			{% for audit in audits %}
+			<div class="row justify-content-center">
 				<div class="col-sm-12 col-md-10 col-lg-8">
-				<div class="card mt-4 ml-5 mr-5">
+				<div class="card mt-4 ml-4 mr-4">
 				  <div class="card-header">
-				    Proceso a auditar: {{audit|title}}
+				  	<div class="row">
+					  		<div class="col-sm-12 col-md-9 col-lg-9">
+						    <span class="align-middle text-uppercase font-weight-bold"><i class="fas fa-cog pr-1"></i>Proceso a auditar: </span>
+						    <span class="align-middle">{{audit|title}}</span>
+						</div>
+					    <div class="col">
+						    <!--Button for desktop-->
+						    <a href="{% url 'audit:rules' audit.pk %}" class="btn btn-danger float-right btn-sm d-none d-sm-none d-md-block"><i class="far fa-eye pr-1"></i>Revisar</a>
+						</div>
+				    </div>
 				  </div>
 				  <div class="card-body">
-				    <h5 class="card-title">Persona encargada: {{audit.audited_name|title}}</h5>
-				    <p class="card-text">Alcance de la auditoria: {{audit.audit_scope|capfirst}}.</p>
-				    <a href="{% url 'audit:rules' audit.pk %}" class="btn btn-primary">Revisar</a>
+				    <h6 class="card-title"><i class="fas fa-user-tie pr-1"></i>Persona encargada del proceso: {{audit.audited_name|title}}</h6>
+				    <p class="card-text m-0 font-weight-bold"><i class="fas fa-location-arrow pr-1"></i>Alcance de la auditoria: </p>
+				    <small class="card-text">{{audit.audit_scope|capfirst}}.</small>
 				  </div>
+				  <!--Button for mobile-->
+				  <a href="{% url 'audit:rules' audit.pk %}" class="btn btn-danger btn-sm d-block d-sm-block d-md-none"><i class="far fa-eye pr-1"></i>Revisar</a>
 				</div>
 				</div>
 		</div>

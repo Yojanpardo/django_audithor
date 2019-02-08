@@ -3,29 +3,38 @@
     {{rule}}
 {% endblock title %}
 {% block container %}
+<div class="container" style="margin-top: 5rem;">
+    <div class="jumbotron text-center">
+    	<h1 class="text-uppercase">Numerales</h1>
+        <hr>
+    	<h5>Selecciona el numeral para ver las preguntas.</h5>
+    </div>
     <div class="container">
-    	<h1 class="mt-5 pt-5">{{rule}}</h1>
-    	<h3>Selecciona el numeral</h3>
+    <a href="" class="btn btn-success btn-sm btn-block text-uppercase"><i class="fas fa-plus pr-1"></i>Agregar mas numerales</a>
+    </div>
     	<div class="row mt-5 justify-content-center">
     		<div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
-    			<table class="table table-striped border">
-    				<thead>
-    					<tr>
-    						<th>#</th>
-    						<th>Title</th>
-    						<th class="text-center">Action</th>
-    					</tr>
-    				</thead>
-    				<tbody>
-    					{% for numeral in numerals %}
-	    					<tr>
-	    						<th>{{numeral.numeral}}</th>
-	    						<td>{{numeral.title}}</td>
-	    						<td class="text-center"><a href="{% url 'audit:questions' rule.audit.pk rule.pk numeral.pk %}" class="btn btn-primary ">Ver preguntas</a></td>
-	    					</tr>
-    					{% endfor %}
-    				</tbody>
-    			</table>
+                <div class="table-responsive">
+                    <h6 class="text-center">{{rule}}</h6>
+        			<table class="table table-striped border text-center">
+        				<thead>
+        					<tr>
+        						<th>Numeral</th>
+        						<th>Descripcion</th>
+        						<th>Accion</th>
+        					</tr>
+        				</thead>
+        				<tbody>
+        					{% for numeral in numerals %}
+    	    					<tr>
+    	    						<th class="align-middle">{{numeral.numeral}}</th>
+    	    						<td class="align-middle">{{numeral.title}}</td>
+    	    						<td class="align-middle"><a href="{% url 'audit:questions' rule.audit.pk rule.pk numeral.pk %}" class="btn btn-danger btn-sm "><i class="fas fa-check pr-1"></i>Seleccionar</a></td>
+    	    					</tr>
+        					{% endfor %}
+        				</tbody>
+        			</table>
+                </div>
     		</div>
     	</div>
     </div>

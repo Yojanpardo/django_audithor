@@ -3,23 +3,27 @@
     {{question}}
 {% endblock title %}
 {% block container %}
-    <div class="container">
-    	<div class="row justify-content-center mt-5	">
-    		<div class="col-sm-12 col-md-10 col-lg-8 col-xl-6 border rounded pt-5 pb-5 pl-3 pr-3 mt-5">
-		    	<h1 class="">{{question}}</h1>
+<div class="container" style="margin-top: 5rem;">
+    <div class="jumbotron text-center">
+        <h1 class="text-uppercase">Pregunta</h1>
+        <hr>
+        <h5 class="">{{question}}</h5>
+    </div>
+    	<div class="row justify-content-center">
+    		<div class="col-sm-12 col-md-10 col-lg-8 col-xl-6 border rounded  pt-3 pb-1 pl-3 pr-3">	
     			<form action="{% url 'audit:question' question.numeral.rule.audit.pk question.numeral.rule.pk question.numeral.pk question.pk %}" method="POST">
     				{% csrf_token %}
     				<input type="hidden" name="numeral" value="{{question.numeral}}">
     				<input type="hidden" name="question" value="{{question.question}}">
-    				<div class="form-group">
-    					<label for="method">Método</label>
+    				<div class="form-group font-weight-bold">
+    					<i class="fas fa-file pr-1 ml-2"></i><label for="method">Método</label>
     					<textarea name="method" id="method" class="form-control">{{question.method}}</textarea>
     				</div>
     				{% for error in form.method.errors %}
 	    				{{error}}
 	    			{% endfor %}
-    				<div class="form-group">
-    					<label for="conflict">Conflicto</label>
+    				<div class="form-group font-weight-bold">
+    					<label for="conflict"><i class="fas fa-crosshairs pr-1 ml-1"></i>Conflicto</label>
     						<select name="conflict" id="conflict" class="form-control">
     							{{question.conflict}}
     							{% for option in form.conflict %}
@@ -30,24 +34,30 @@
     				{% for error in form.conflict.errors %}
 	    				{{error}}
 	    			{% endfor %}
-    				<div class="form-group">
-    					<label for="conflictDescription">Descripción del conflicto encontrado</label>
+    				<div class="form-group font-weight-bold">
+    					<label for="conflictDescription"><i class="fas fa-file-signature pr-1 ml-2"></i>Descripción del conflicto encontrado</label>
     					<textarea class="form-control" name="conflict_description" id="conflictDescription"></textarea>
     				</div>
     				{% for error in form.conflict_description.errors %}
 	    				{{error}}
 	    			{% endfor %}
     				<div class="form-group">
-		   				<label class="btn btn-warning text-light" data-toggle="tooltip" data-placement="bottom" title="Subir foto comprobante.">
-		   					Ingresar evidencia
-		   					<i class="fas fa-camera"></i>
-		   					<input type="file" style="display: none;">
-		   				</label>
-		 			</div>
-    				{% for error in form.evidence.errors %}
-	    				{{error}}
-	    			{% endfor %}
-    				<button type="submit" class="btn btn-success col mt-2">Guardar</button>
+                        <div class="row mt-1">
+                            <div class="col-sm-12 col-md-5 col-lg-5">
+                                <label class="btn btn-warning text-light col" data-toggle="tooltip" data-placement="bottom" title="Subir foto comprobante.">
+                                    <i class="fas fa-camera"></i>
+                                    Ingresar evidencia
+                                    <input type="file" style="display: none;">
+                                </label>
+                            </div>
+                            <div class="col-sm-12 col-md-7 col-lg-7">
+                            {% for error in form.evidence.errors %}
+                            {{error}}
+                            {% endfor %}
+                            <button type="submit" class="btn btn-success col"><i class="fas fa-save pr-1"></i>Guardar</button>
+                            </div>
+                        </div>			
+		 			</div>    				
     			</form>
     		</div>
     	</div>
