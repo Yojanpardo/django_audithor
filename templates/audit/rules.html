@@ -10,10 +10,11 @@
 		<h5>Selecciona la norma a auditar.</h5>
 	</div>
 	<div class="container">
-	<a href="" class="btn btn-success btn-sm btn-block text-uppercase"><i class="fas fa-plus pr-1"></i>Agregar nueva norma</a>
+	<a href="{% url 'audit:create_rule' %}" class="btn btn-success btn-sm btn-block text-uppercase"><i class="fas fa-plus pr-1"></i>Agregar nueva norma</a>
 	</div>
 	<div class="row justify-content-center">
-		<div class="col-sm-12 col-md-10 col-lg-8 col-xl-6 mt-5 	">
+
+		<div class="col-sm-12 col-md-12 col-lg-12 col-xl-7 mt-5 	">
 		<div class="table-responsive">
 			<h6 class="text-center">{{audit}}</h6>
 	    <table class="table table-striped border text-center">
@@ -21,15 +22,18 @@
 			    <tr>
 			      <th scope="col"># Norma</th>
 			      <th scope="col">Nombre de la Norma</th>
-			      <th scope="col">Accion</th>
-			    </tr>
+			      <th scope="col">Acciones</th>
 			  </thead>
 			  <tbody>
 			    {% for rule in rules %}
 				    <tr>
 				      <th scope="row" class="align-middle">{{rule.rule_name}}</th>
 				      <td class="align-middle">{{rule.rule_title}}</td>
-				      <td><a href="{% url 'audit:numerals' audit.pk rule.pk %}" class="btn btn-danger btn-sm"><i class="fas fa-clipboard-check pr-1"></i>Auditar</a></td>
+				      <td class="align-middle">
+				      		<a href="{% url 'audit:numerals' audit.pk rule.pk %}" class="btn btn-info btn-sm"><i class="fas fa-clipboard-check pr-1"></i>Auditar</a>
+				      		<a href="{% url 'audit:create_numeral' %}" class="btn btn-success btn-sm"><i class="fas fa-plus pr-1"></i>Agregar Numeral</a>
+				      	</div>
+				      	</td>
 				    </tr>
 			    {% endfor %}
 			  </tbody>

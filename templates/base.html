@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>{% block title %}Audithor{% endblock title %}</title>
+    <title>Audithor - {% block title %}{% endblock title %}</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -28,7 +28,7 @@
 
   </head>
 
-  <body id="page-top">
+  <body id="page-top" class="bg-light">
     {% include "nav.html" %}
     {% block container %}
     

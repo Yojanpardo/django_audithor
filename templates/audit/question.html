@@ -10,7 +10,7 @@
         <h5 class="">{{question}}</h5>
     </div>
     	<div class="row justify-content-center">
-    		<div class="col-sm-12 col-md-10 col-lg-8 col-xl-6 border rounded  pt-3 pb-1 pl-3 pr-3">	
+    		<div class="col-sm-12 col-md-10 col-lg-8 col-xl-6 border rounded  pt-3 pb-1 mb-5 pl-3 pr-3">	
     			<form action="{% url 'audit:question' question.numeral.rule.audit.pk question.numeral.rule.pk question.numeral.pk question.pk %}" method="POST">
     				{% csrf_token %}
     				<input type="hidden" name="numeral" value="{{question.numeral}}">

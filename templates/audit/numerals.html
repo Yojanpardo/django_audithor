@@ -10,10 +10,10 @@
     	<h5>Selecciona el numeral para ver las preguntas.</h5>
     </div>
     <div class="container">
-    <a href="" class="btn btn-success btn-sm btn-block text-uppercase"><i class="fas fa-plus pr-1"></i>Agregar mas numerales</a>
+    <a href="{% url 'audit:create_numeral' %}" class="btn btn-success btn-sm btn-block text-uppercase"><i class="fas fa-plus pr-1"></i>Agregar mas numerales</a>
     </div>
     	<div class="row mt-5 justify-content-center">
-    		<div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
+    		<div class="col-sm-12 col-md-12 col-lg-12 col-xl-8">
                 <div class="table-responsive">
                     <h6 class="text-center">{{rule}}</h6>
         			<table class="table table-striped border text-center">
@@ -21,7 +21,7 @@
         					<tr>
         						<th>Numeral</th>
         						<th>Descripcion</th>
-        						<th>Accion</th>
+        						<th>Acciones</th>
         					</tr>
         				</thead>
         				<tbody>
@@ -29,13 +29,15 @@
     	    					<tr>
     	    						<th class="align-middle">{{numeral.numeral}}</th>
     	    						<td class="align-middle">{{numeral.title}}</td>
-    	    						<td class="align-middle"><a href="{% url 'audit:questions' rule.audit.pk rule.pk numeral.pk %}" class="btn btn-danger btn-sm "><i class="fas fa-check pr-1"></i>Seleccionar</a></td>
+    	    						<td class="align-middle">
+                                        <a href="{% url 'audit:questions' rule.audit.pk rule.pk numeral.pk %}" class="btn btn-info btn-sm "><i class="fas fa-check pr-1"></i>Seleccionar</a>
+                                        <a href="{% url 'audit:create_question' %}" class="btn btn-success btn-sm "><i class="fas fa-plus pr-1"></i>Agregar Preguntas</a></td>
     	    					</tr>
         					{% endfor %}
         				</tbody>
         			</table>
                 </div>
-    		</div>
+            </div>
     	</div>
     </div>
 {% endblock container %}

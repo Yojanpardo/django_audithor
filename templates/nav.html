@@ -8,32 +8,17 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav text-uppercase ml-auto">
-        <!--
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#register">Datos</a>
-        </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#services">#4</a>
-          </li>
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#portfolio">#5</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#about">#6</a>
-        </li-->
-        {% if audit %}
-            
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger text-warning font-weight-bold" href="{% url 'audit:detail' audit.pk %}"><i class="far fa-chart-bar pr-1"></i>Ver estadisticas de Auditoria</a>
-        </li>
-        
-        {% endif %}<!--
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#contact">Contacto</a>
-        </li-->
-        <!--<li class="nav-item">
-          <a class="nav-link js-scroll-trigger text-warning" href="#">Log Out</a>
+        <!--<li class="nav-item"> ############ Eliminar la vista de new audit, en el home esta para crear nuevo
+          <a class="nav-link js-scroll-trigger" href="{% url 'audit:create_audit' %}">New audit</a>
         </li>-->
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger font-weight-bold" href="{% url 'audit:audits' %}"><i class="fas fa-clipboard-list pr-1"></i>Ver Auditorias</a>
+        </li>
+        <!--{% if audit %} ######### Tratar de hacer que se muestre en todas las vistas desde que se da al boton "Revisar"
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger font-weight-bold" href="{% url 'audit:detail' audit.pk %}"><i class="far fa-chart-bar pr-1"></i>Ver estadisticas</a>
+        </li>
+        {% endif %}-->
       </ul>
     </div>
   </div>
