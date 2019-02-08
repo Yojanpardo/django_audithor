@@ -28,7 +28,17 @@
     					{% endfor %}
     				</tbody>
     			</table>
-    		</div>
+                {% if last %}
+                    
+                <a href="{% url 'audit:questions' numeral.rule.audit.pk numeral.rule.pk last %}" class="btn btn-success">Anterior</a>
+                
+                {% endif %}
+                {% if next %}
+                    
+                <a href="{% url 'audit:questions' numeral.rule.audit.pk numeral.rule.pk next %}" class="btn btn-success float-right">Siguiente</a>
+                
+                {% endif %}
+            </div>
     	</div>
     </div>
 {% endblock container %}

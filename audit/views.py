@@ -38,7 +38,19 @@ class NumeralDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         questions = Question.objects.filter(numeral = self.get_object())
-
+        numeral = self.get_object()
+        last = numeral.pk -1
+        next = numeral.pk +1
+        try:
+            if Numeral.objects.get(pk=last):
+                context['last']=last
+        except Exception as e:
+            pass
+        try:
+            if Numeral.objects.get(pk=next):
+                context['next']=next
+        except Exception as e:
+            pass
         context['questions'] = questions
         return context
 
