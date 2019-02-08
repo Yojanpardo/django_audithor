@@ -7,13 +7,14 @@
 	<h1 class="mt-5 pt-5">{{audit}}</h1>
 	<h3>Selecciona la norma a auditar</h3>
 	<div class="row justify-content-center">
-		<div class="col-sm-12 col-md-10 col-lg-8 col-xl-6 mt-5 	">
+		<div class="col-sm-12 col-md-10 col-lg-8 mt-5">
 	    <table class="table table-striped border">
 			  <thead>
 			    <tr>
-			      <th scope="col">#</th>
-			      <th scope="col">Rule title</th>
-			      <th class="text-center">action</th>
+			      <th scope="col">Norma</th>
+			      <th scope="col">Título</th>
+			      <th class="text-center">Auditar</th>
+			      <th class="text-center">Nuevo numeral</th>
 			    </tr>
 			  </thead>
 			  <tbody>
@@ -22,6 +23,7 @@
 				      <th scope="row">{{rule.rule_name}}</th>
 				      <td>{{rule.rule_title}}</td>
 				      <td class="text-center"><a href="{% url 'audit:numerals' audit.pk rule.pk %}" class="btn btn-primary">Auditar</a></td>
+				      <td class="text-center"><a href="{% url 'audit:create_numeral' %}" class="btn btn-info">Nuevo</a></td>
 				    </tr>
 			    {% endfor %}
 			  </tbody>

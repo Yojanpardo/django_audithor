@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}
+    Nueva pregunta
+{% endblock title %}
+{% block container %}
+    <form action="{% url 'audit:create_question' %}" method="POST">
+    	{% csrf_token %}
+    	{{form.as_p}}
+    	<button class="btn btn-success">Crear!</button>
+    </form>
+{% endblock container %}	

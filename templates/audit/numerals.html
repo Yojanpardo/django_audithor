@@ -7,13 +7,14 @@
     	<h1 class="mt-5 pt-5">{{rule}}</h1>
     	<h3>Selecciona el numeral</h3>
     	<div class="row mt-5 justify-content-center">
-    		<div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
+    		<div class="col-sm-12 col-md-10 col-lg-8 ">
     			<table class="table table-striped border">
     				<thead>
     					<tr>
     						<th>#</th>
     						<th>Title</th>
-    						<th class="text-center">Action</th>
+    						<th class="text-center">Preguntar</th>
+                            <th class="text-center">Nueva</th>
     					</tr>
     				</thead>
     				<tbody>
@@ -22,6 +23,7 @@
 	    						<th>{{numeral.numeral}}</th>
 	    						<td>{{numeral.title}}</td>
 	    						<td class="text-center"><a href="{% url 'audit:questions' rule.audit.pk rule.pk numeral.pk %}" class="btn btn-primary ">Ver preguntas</a></td>
+                                <td class="text-center"><a href="{% url 'audit:create_question' %}" class="btn btn-info">Nueva</a></td>
 	    					</tr>
     					{% endfor %}
     				</tbody>

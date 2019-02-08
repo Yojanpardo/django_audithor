@@ -1,8 +1,9 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView, UpdateView
+from django.views.generic import ListView, DetailView, UpdateView, CreateView
 from .models import Audit, Rule, Numeral, Question
 from django.urls import reverse_lazy
 from django.http import Http404
+from .forms import AuditCreateForm, RuleCreateForm, NumeralCreateForm, QuestionCreateForm
 
 # Create your views here.
 
@@ -100,3 +101,23 @@ class AuditRankingView(DetailView):
             'unanswered_percent':unanswered_percent
         }
         return context
+
+class AuditCreateView(CreateView):
+    template_name = "audit/create_audit.html"
+    form_class = AuditCreateForm
+    success_url = reverse_lazy('audit:audits')
+
+class RuleCreateView(CreateView):
+    template_name = "audit/create_rule.html"
+    form_class = RuleCreateForm
+    success_url = reverse_lazy('audit:audits')
+
+class NumeralCreateView(CreateView):
+    template_name = "audit/create_numeral.html"
+    form_class = NumeralCreateForm
+    success_url = reverse_lazy('audit:audits')
+
+class QuestionCreateView(CreateView):
+    template_name = "audit/create_question.html"
+    form_class = QuestionCreateForm
+    success_url = reverse_lazy('audit:audits')
