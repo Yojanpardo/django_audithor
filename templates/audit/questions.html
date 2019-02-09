@@ -10,40 +10,39 @@
     	<h5>Selecciona la pregunta para contestarla.</h5>
     </div>
     <div class="container">
-    <a href="{% url 'audit:create_question' %}" class="btn btn-success btn-sm btn-block text-uppercase"><i class="fas fa-plus pr-1"></i>Agregar mas preguntas</a>
     </div>
-    	<div class="row justify-content-center">
-    		<div class="col-sm-12 col-md-10 col-lg-8 mt-5">
+        <div class="row justify-content-center">
+            <div class="col-sm-12 col-md-10 col-lg-8 mt-5">
                 <div class="table-responsive">
                     <h6 class="text-center">{{numeral}}</h6>
-        			<table class="table table-striped border">
-        				<thead>
-        					<tr>
-        						<th class="text-center">Pregunta</th>
+                    <table class="table table-striped border">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Pregunta</th>
                                 <th class="text-center">Completed</th>
-        						<th class="text-center">Acción</th>
-        					</tr>
-        				</thead>
-        				<tbody>
-        					{% for question in questions %}
-    	    					<tr>
-    	    						<td class="align-middle text-justify">{{question.question}}</td>
-    	    						<td class="text-center align-middle">{% if question.conflict %}<i class="fas fa-check text-success"></i>{% else %}<i class="fas fa-times text-danger"></i>{% endif %}</td>
+                                <th class="text-center">Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for question in questions %}
+                                <tr>
+                                    <td class="align-middle text-justify">{{question.question}}</td>
+                                    <td class="text-center align-middle">{% if question.conflict %}<i class="fas fa-check text-success"></i>{% else %}<i class="fas fa-times text-danger"></i>{% endif %}</td>
                                     <td class="text-center align-middle"><a href="{% url 'audit:question' numeral.rule.audit.pk numeral.rule.pk numeral.pk question.pk %}" class="btn btn-info btn-sm">{% if question.conflict %} <i class="fas fa-edit pr-1"></i>Editar</a>{% else %}<i class="far fa-question-circle pr-1"></i>Contestar</a>{% endif %}</td>
-    	    					</tr>
-        					{% endfor %}
-        				</tbody>
-        			</table>
-    		    </div>
-                <!-- No entiendo esta wea, tal vez hay pocas preguntas(?)
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <a href="{% url 'audit:create_question' %}" class="btn btn-success btn-sm btn-block text-uppercase mb-4"><i class="fas fa-plus pr-1"></i>Agregar mas preguntas</a>
                 {% if last %}                
                 <a href="{% url 'audit:questions' numeral.rule.audit.pk numeral.rule.pk last %}" class="btn btn-success">Anterior</a>         
                 {% endif %}
                 {% if next %}                
                 <a href="{% url 'audit:questions' numeral.rule.audit.pk numeral.rule.pk next %}" class="btn btn-success float-right">Siguiente</a>              
                 {% endif %}
-                -->
+                
             </div>
-    	</div>
+        </div>
     </div>
 {% endblock container %}

@@ -10,34 +10,35 @@
 		<h5>Selecciona la norma a auditar.</h5>
 	</div>
 	<div class="container">
-	<a href="{% url 'audit:create_rule' %}" class="btn btn-success btn-sm btn-block text-uppercase"><i class="fas fa-plus pr-1"></i>Agregar nueva norma</a>
+		{% if not audit.rule %}
+		    
+			<a href="{% url 'audit:create_rule' %}" class="btn btn-success btn-sm btn-block text-uppercase"><i class="fas fa-plus pr-1"></i>Agregar nueva norma</a>
+		
+		{% endif %}
 	</div>
 	<div class="row justify-content-center">
-
 		<div class="col-sm-12 col-md-12 col-lg-12 col-xl-7 mt-5 	">
-		<div class="table-responsive">
-			<h6 class="text-center">{{audit}}</h6>
-	    <table class="table table-striped border text-center">
-			  <thead>
-			    <tr>
-			      <th scope="col"># Norma</th>
-			      <th scope="col">Nombre de la Norma</th>
-			      <th scope="col">Acciones</th>
-			  </thead>
-			  <tbody>
-			    {% for rule in rules %}
-				    <tr>
-				      <th scope="row" class="align-middle">{{rule.rule_name}}</th>
-				      <td class="align-middle">{{rule.rule_title}}</td>
-				      <td class="align-middle">
-				      		<a href="{% url 'audit:numerals' audit.pk rule.pk %}" class="btn btn-info btn-sm"><i class="fas fa-clipboard-check pr-1"></i>Auditar</a>
-				      		<a href="{% url 'audit:create_numeral' %}" class="btn btn-success btn-sm"><i class="fas fa-plus pr-1"></i>Agregar Numeral</a>
-				      	</div>
-				      	</td>
-				    </tr>
-			    {% endfor %}
-			  </tbody>
-			</table>
+			<div class="table-responsive">
+				<h6 class="text-center">{{audit}}</h6>
+		    	<table class="table table-striped border text-center">
+				    <thead>
+				    	<tr>
+				      		<th scope="col"># Norma</th>
+				      		<th scope="col">Nombre de la Norma</th>
+				      		<th scope="col">Acciones</th>
+				  		</tr>
+				  	</thead>
+				  	<tbody>
+				    {% for rule in rules %}
+					    <tr>
+					      	<th scope="row" class="align-middle">{{rule.rule_name}}</th>
+					      	<td class="align-middle">{{rule.rule_title}}</td>
+					      	<td class="align-middle"><a href="{% url 'audit:numerals' audit.pk rule.pk %}" class="btn btn-info btn-sm"><i class="fas fa-clipboard-check pr-1"></i>Auditar</a>
+					      	</td>
+					    </tr>
+				    {% endfor %}
+				  	</tbody>
+				</table>
 			</div>
 		</div>
 	</div>

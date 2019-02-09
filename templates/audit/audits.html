@@ -12,7 +12,7 @@
 	<div class="container">
 	<!--<a href="" class="btn btn-success btn-sm btn-block text-uppercase"><i class="fas fa-plus pr-1"></i>Crear nueva Auditoria</a>-->
 	</div>
-			{% for audit in audits %}
+		{% for audit in audits %}
 			<div class="row justify-content-center">
 				<div class="col-sm-12 col-md-10 col-lg-8">
 				<div class="card mt-4 ml-4 mr-4">
@@ -25,10 +25,10 @@
 					    <div class="col">
 						    <!--Button for desktop-->
 						    {% if audit.rule %}
-						    <a href="{% url 'audit:rules' audit.pk %}" class="btn btn-danger float-right btn-sm d-none d-sm-none d-md-block"><i class="far fa-eye pr-1"></i>Revisar</a>
+						    <a href="{% url 'audit:rules' audit.pk %}" class="btn btn-warning float-right btn-sm d-none d-sm-none d-md-block"><i class="far fa-eye pr-1"></i>Revisar</a>
 						    {% endif %}
 						 	{% if not audit.rule %}
-					    	<a href="{% url 'audit:create_rule' %}" class="btn btn-success float-right btn-sm d-none d-sm-none d-md-block"><i class="fas fa-plus pr-1"></i>Asignar</a>
+					    	<a href="{% url 'audit:create_rule' %}" class="btn btn-warning float-right btn-sm d-none d-sm-none d-md-block"><i class="fas fa-plus pr-1"></i>Asignar</a>
 					    	{% endif %}
 						</div>
 				    </div>
@@ -53,13 +53,13 @@
 				  </div>
 				  <!--Button for mobile-->
 				  {% if audit.rule %}
-				  <a href="{% url 'audit:rules' audit.pk %}" class="btn btn-danger btn-sm d-block d-sm-block d-md-none"><i class="far fa-eye pr-1"></i>Revisar</a>
+				  <a href="{% url 'audit:rules' audit.pk %}" class="btn btn-primary btn-sm d-block d-sm-block d-md-none"><i class="far fa-eye pr-1"></i>Revisar</a>
 				  {% endif %}
 				  {% if not audit.rule %}
-				  <a href="{% url 'audit:create_rule' %}" class="btn btn-success btn-sm d-block d-sm-block d-md-none"><i class="fas fa-plus pr-1"></i>Asignar</a>
+				  <a href="{% url 'audit:create_rule' %}" class="btn btn-primary btn-sm d-block d-sm-block d-md-none"><i class="fas fa-plus pr-1"></i>Asignar</a>
 				  {% endif %}
 				</div>
-				</div>
+			</div>
 		</div>
 	{% endfor %}
 </div>

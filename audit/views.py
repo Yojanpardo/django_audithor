@@ -121,3 +121,9 @@ class QuestionCreateView(CreateView):
     template_name = "audit/create_question.html"
     form_class = QuestionCreateForm
     success_url = reverse_lazy('audit:audits')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        numerals = Numeral.objects.all()
+        context['numerals']=numerals
+        return context
