@@ -4,16 +4,16 @@ from .models import Audit, Rule, Numeral, Question
 from django.urls import reverse_lazy
 from django.http import Http404
 from .forms import AuditCreateForm, RuleCreateForm, NumeralCreateForm, QuestionCreateForm
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
-class AuditListView(ListView):
+class AuditListView(LoginRequiredMixin, ListView):
     model = Audit
     template_name = "audit/audits.html"
     context_object_name = 'audits'
     paginate_by = 5
 
-class AuditDetailView(DetailView):
+class AuditDetailView(LoginRequiredMixin, DetailView):
     model = Audit
     template_name = "audit/rules.html"
 
@@ -23,7 +23,7 @@ class AuditDetailView(DetailView):
         context['rules'] = rules
         return context
 
-class RuleDetailView(DetailView):
+class RuleDetailView(LoginRequiredMixin, DetailView):
     model = Rule
     template_name = "audit/numerals.html"
 
@@ -33,7 +33,7 @@ class RuleDetailView(DetailView):
         context['numerals'] = numerals
         return context
 
-class NumeralDetailView(DetailView):
+class NumeralDetailView(LoginRequiredMixin, DetailView):
     model = Numeral
     template_name = "audit/questions.html"
 
@@ -56,7 +56,7 @@ class NumeralDetailView(DetailView):
         context['questions'] = questions
         return context
 
-class QuestionUpdateView(UpdateView):
+class QuestionUpdateView(LoginRequiredMixin, UpdateView):
     model = Question
     template_name = "audit/question.html"
     fields = ['question','method','conflict','conflict_description','evidence']
@@ -72,7 +72,7 @@ class QuestionUpdateView(UpdateView):
     		'pk':numeral.pk
     		})       
 
-class AuditRankingView(DetailView):
+class AuditRankingView(LoginRequiredMixin, DetailView):
     model = Audit
     template_name = "audit/ranking.html"
 
@@ -103,12 +103,12 @@ class AuditRankingView(DetailView):
         }
         return context
 
-class AuditCreateView(CreateView):
+class AuditCreateView(LoginRequiredMixin, CreateView):
     template_name = "audit/create_audit.html"
     form_class = AuditCreateForm
     success_url = reverse_lazy('audit:audits')
 
-class RuleCreateView(CreateView):
+class RuleCreateView(LoginRequiredMixin, CreateView):
     template_name = "audit/create_rule.html"
     form_class = RuleCreateForm
     success_url = reverse_lazy('audit:audits')
@@ -118,7 +118,7 @@ class RuleCreateView(CreateView):
         context['audits'] = Audit.objects.filter(rule=None)
         return context
 
-class NumeralCreateView(CreateView):
+class NumeralCreateView(LoginRequiredMixin, CreateView):
     template_name = "audit/create_numeral.html"
     form_class = NumeralCreateForm
     success_url = reverse_lazy('audit:audits')
@@ -129,7 +129,7 @@ class NumeralCreateView(CreateView):
         context['rules'] = rules
         return context
 
-class QuestionCreateView(CreateView):
+class QuestionCreateView(LoginRequiredMixin, CreateView):
     template_name = "audit/create_question.html"
     form_class = QuestionCreateForm
     success_url = reverse_lazy('audit:audits')
