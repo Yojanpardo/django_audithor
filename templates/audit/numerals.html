@@ -9,8 +9,6 @@
         <hr>
     	<h5>Selecciona el numeral para ver las preguntas.</h5>
     </div>
-    <div class="container">
-    </div>
         <div class="row mt-5 justify-content-center">
             <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8">
                 <div class="table-responsive">
@@ -29,14 +27,14 @@
                                     <th class="align-middle">{{numeral.numeral}}</th>
                                     <td class="align-middle">{{numeral.title}}</td>
                                     <td class="align-middle">
-                                        <a href="{% url 'audit:questions' rule.audit.pk rule.pk numeral.pk %}" class="btn btn-info btn-sm "><i class="fas fa-check pr-1"></i>Seleccionar</a>
+                                        <a href="{% url 'audit:questions' rule.audit.pk rule.pk numeral.pk %}" class="btn btn-info btn-sm "><i class="fas fa-check pr-1"></i>Seleccionar</a></td>
                                 </tr>
                             {% endfor %}
                         </tbody>
                     </table>
                 </div>
-                <a href="{% url 'audit:create_numeral' %}" class="btn btn-primary btn-sm btn-block text-uppercase"><i class="fas fa-plus pr-1"></i>Agregar mas numerales</a>
+                <a href="{% url 'audit:create_numeral' %}" class="btn btn-primary btn-sm col mb-5"><i class="fas fa-plus pr-1"></i>AGREGAR MÁS NUMERALES</a>
             </div>
         </div>
-    </div>
+</div>
 {% endblock container %}

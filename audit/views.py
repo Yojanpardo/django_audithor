@@ -11,6 +11,7 @@ class AuditListView(ListView):
     model = Audit
     template_name = "audit/audits.html"
     context_object_name = 'audits'
+    paginate_by = 5
 
 class AuditDetailView(DetailView):
     model = Audit
@@ -112,10 +113,21 @@ class RuleCreateView(CreateView):
     form_class = RuleCreateForm
     success_url = reverse_lazy('audit:audits')
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['audits'] = Audit.objects.filter(rule=None)
+        return context
+
 class NumeralCreateView(CreateView):
     template_name = "audit/create_numeral.html"
     form_class = NumeralCreateForm
     success_url = reverse_lazy('audit:audits')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        rules = Rule.objects.all()
+        context['rules'] = rules
+        return context
 
 class QuestionCreateView(CreateView):
     template_name = "audit/create_question.html"

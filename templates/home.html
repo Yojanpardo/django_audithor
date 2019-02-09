@@ -18,40 +18,41 @@
         <h3 class="text-uppercase text-center mb-5">Datos de la Auditoria</h3>
         <div class="row justify-content-center">
         <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6 border rounded  pt-3 pl-3 pr-3"> 
-          <form action="" method="">
+          <form action="{% url 'audit:create_audit' %}" method="POST">
             <h4 class="text-center">Generales</h4>
+            {% csrf_token %}
             <div class="form-group font-weight-bold">
               <label for=""><i class="fas fa-user-cog pr-1"></i>Nombre del Auditor</label>
-              <input name="method" id="method" class="form-control"></input>
+              <input name="auditor_name" id="method" class="form-control"></input>
             </div>
             <div class="form-group font-weight-bold">
               <label for=""><i class="fas fa-cog pr-1"></i>Proceso a Auditar</label>
-              <input name="method" id="method" class="form-control"></input>
+              <input name="process_to_be_audited" id="method" class="form-control"></input>
             </div>
             <div class="form-group font-weight-bold">
               <label for=""><i class="fas fa-location-arrow pr-1"></i>Alcance de la Auditoria</label>
-              <input name="method" id="method" class="form-control"></input>
+              <input name="audit_scope" id="method" class="form-control"></input>
             </div>
             <div class="form-group font-weight-bold">
               <label for=""><i class="fas fa-calendar-alt pr-1"></i>Fecha de la Auditoria</label>
-               <input type="date" name="bday" max="3000-12-31" min="1000-01-01" class="form-control">
+               <input type="date" name="date" class="form-control">
             </div>
             <hr>
             <h4 class="text-center">Datos del Auditado</h4>
             <div class="form-group font-weight-bold">
               <label for=""><i class="fas fa-user-tie pr-1"></i>Nombre del Auditado</label>
-              <input name="method" id="method" class="form-control"></input>
+              <input name="audited_name" id="method" class="form-control"></input>
             </div>
             <div class="form-group font-weight-bold">
               <label for=""><i class="fas fa-briefcase pr-1"></i>Trabajo del Auditado</label>
-              <input name="method" id="method" class="form-control"></input>
+              <input name="audited_job" id="method" class="form-control"></input>
             </div>
             <div class="form-group font-weight-bold">
               <label for=""><i class="fas fa-phone pr-1"></i>Telefono</label>
-              <input name="method" id="method" class="form-control"></input>
+              <input name="audited_phone_number" id="method" class="form-control"></input>
             </div>
             <div class="form-group">
-              <a href="{% url 'audit:audits' %}" class="btn btn-warning col">Iniciar Auditoria</a>
+              <button type="submit" class="btn btn-warning col">Iniciar Auditoria</button>
             </div>      
             </div>            
           </form>

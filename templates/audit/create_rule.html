@@ -20,27 +20,27 @@
 	<div class="container">
         <div class="row justify-content-center">
         <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6 border rounded  pt-3 pl-3 pr-3"> 
-          <form action="" method="">
+          <form action="{% url 'audit:create_rule' %}" method="POST">
+            {% csrf_token %}
             <div class="form-group font-weight-bold">
               <label for="process"><i class="fas fa-cog pr-1"></i>Proceso</label>
-             <select class="form-control" id="process">
-			      <option>1</option>
-			      <option>2</option>
-			      <option>3</option>
-			      <option>4</option>
-			      <option>5</option>
+             <select class="form-control" id="process" name="audit">
+              <option selected>--------</option>
+              {% for audit in audits %}
+                <option value="{{audit.pk}}">{{audit}}</option>
+              {% endfor %}
 			    </select>
             </div>
             <div class="form-group font-weight-bold">
               <label for=""><i class="fas fa-list-ol pr-1"></i>Norma</label>
-              <input name="" id="" class="form-control"></input>
+              <input name="rule_name" id="" class="form-control"></input>
             </div>
             <div class="form-group font-weight-bold">
               <label for=""><i class="fas fa-file-signature pr-1"></i>Titulo de la Norma</label>
-              <input name="" id="" class="form-control"></input>
+              <input name="rule_title" id="" class="form-control"></input>
             </div>
             <div class="form-group">
-              <a href="" class="btn btn-success col"><i class="fas fa-save pr-1"></i>Guardar</a>
+              <button class="btn btn-success col"><i class="fas fa-save pr-1"></i>Guardar</button>
             </div>      
             </div>            
           </form>
