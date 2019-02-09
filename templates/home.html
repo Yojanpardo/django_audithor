@@ -1,63 +1,68 @@
 {% extends "base.html" %}
 {% block title %}
-    Inicio
+Inicio
 {% endblock title %}
 {% block container %}
-        <!-- Header -->
-    <header class="masthead">
-      <div class="container">
-        <div class="intro-text">
-          <div class="intro-lead-in">Bienvenido!</div>
-          <div class="intro-heading text-uppercase">¿Listo para auditar?</div>
-          <a class="btn btn-warning btn-xl text-uppercase js-scroll-trigger scroll" href="#go">Crea una nueva auditoria</a>
-        </div>
-      </div>
-    </header>
-    <section id="go">
-      <div class="container">
-        <h3 class="text-uppercase text-center mb-5">Datos de la Auditoria</h3>
-        <div class="row justify-content-center">
-        <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6 border rounded  pt-3 pl-3 pr-3"> 
-          <form action="{% url 'audit:create_audit' %}" method="POST">
-            <h4 class="text-center">Generales</h4>
-            {% csrf_token %}
-            <div class="form-group font-weight-bold">
-              <label for=""><i class="fas fa-user-cog pr-1"></i>Nombre del Auditor</label>
-              <input name="auditor_name" id="method" class="form-control"></input>
-            </div>
-            <div class="form-group font-weight-bold">
-              <label for=""><i class="fas fa-cog pr-1"></i>Proceso a Auditar</label>
-              <input name="process_to_be_audited" id="method" class="form-control"></input>
-            </div>
-            <div class="form-group font-weight-bold">
-              <label for=""><i class="fas fa-location-arrow pr-1"></i>Alcance de la Auditoria</label>
-              <input name="audit_scope" id="method" class="form-control"></input>
-            </div>
-            <div class="form-group font-weight-bold">
-              <label for=""><i class="fas fa-calendar-alt pr-1"></i>Fecha de la Auditoria</label>
-               <input type="date" name="date" class="form-control">
-            </div>
-            <hr>
-            <h4 class="text-center">Datos del Auditado</h4>
-            <div class="form-group font-weight-bold">
-              <label for=""><i class="fas fa-user-tie pr-1"></i>Nombre del Auditado</label>
-              <input name="audited_name" id="method" class="form-control"></input>
-            </div>
-            <div class="form-group font-weight-bold">
-              <label for=""><i class="fas fa-briefcase pr-1"></i>Trabajo del Auditado</label>
-              <input name="audited_job" id="method" class="form-control"></input>
-            </div>
-            <div class="form-group font-weight-bold">
-              <label for=""><i class="fas fa-phone pr-1"></i>Telefono</label>
-              <input name="audited_phone_number" id="method" class="form-control"></input>
-            </div>
-            <div class="form-group">
-              <button type="submit" class="btn btn-warning col">Iniciar Auditoria</button>
-            </div>      
-            </div>            
-          </form>
-        </div>
-      </div>
-      </div>
-    </section>
+<!-- Header -->
+<header class="masthead">
+  <div class="container">
+    <div class="intro-text">
+      <div class="intro-lead-in">Bienvenido!</div>
+      <div class="intro-heading text-uppercase">¿Listo para auditar?</div>
+      {% if user.is_anonymous %}
+      <a class="btn btn-warning btn-xl text-uppercase js-scroll-trigger scroll" href="{% url 'accounts:login' %}">Iniciar sesión</a>
+      {% else %}
+      <a class="btn btn-warning btn-xl text-uppercase js-scroll-trigger scroll" href="#go">Crea una nueva auditoria</a>
+      {% endif %}
+    </div>
+  </div>
+</header>
+{% if not user.is_anonymous %}
+<section id="go">
+  <div class="container">
+    <h3 class="text-uppercase text-center mb-5">Datos de la Auditoria</h3>
+    <div class="row justify-content-center">
+      <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6 border rounded  pt-3 pl-3 pr-3"> 
+        <form action="{% url 'audit:create_audit' %}" method="POST">
+          <h4 class="text-center">Generales</h4>
+          {% csrf_token %}
+          <div class="form-group font-weight-bold">
+            <label for=""><i class="fas fa-user-cog pr-1"></i>Nombre del Auditor</label>
+            <input name="auditor_name" id="method" class="form-control">
+          </div>
+          <div class="form-group font-weight-bold">
+            <label for=""><i class="fas fa-cog pr-1"></i>Proceso a Auditar</label>
+            <input name="process_to_be_audited" id="method" class="form-control">
+          </div>
+          <div class="form-group font-weight-bold">
+            <label for=""><i class="fas fa-location-arrow pr-1"></i>Alcance de la Auditoria</label>
+            <input name="audit_scope" id="method" class="form-control">
+          </div>
+          <div class="form-group font-weight-bold">
+            <label for=""><i class="fas fa-calendar-alt pr-1"></i>Fecha de la Auditoria</label>
+            <input type="date" name="date" class="form-control">
+          </div>
+          <hr>
+          <h4 class="text-center">Datos del Auditado</h4>
+          <div class="form-group font-weight-bold">
+            <label for=""><i class="fas fa-user-tie pr-1"></i>Nombre del Auditado</label>
+            <input name="audited_name" id="method" class="form-control">
+          </div>
+          <div class="form-group font-weight-bold">
+            <label for=""><i class="fas fa-briefcase pr-1"></i>Trabajo del Auditado</label>
+            <input name="audited_job" id="method" class="form-control">
+          </div>
+          <div class="form-group font-weight-bold">
+            <label for=""><i class="fas fa-phone pr-1"></i>Telefono</label>
+            <input name="audited_phone_number" id="method" class="form-control">
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-warning col">Iniciar Auditoria</button>
+          </div>      
+        </form>
+      </div>            
+    </div>
+  </div>
+</section>    
+{% endif %}
 {% endblock container %}
