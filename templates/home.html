@@ -10,9 +10,12 @@ Inicio
       <div class="intro-lead-in">Bienvenido!</div>
       <div class="intro-heading text-uppercase">¿Listo para auditar?</div>
       {% if user.is_anonymous %}
-      <a class="btn btn-warning btn-xl text-uppercase js-scroll-trigger scroll d-none d-sm-block" href="{% url 'accounts:login' %}">Iniciar sesión</a>
+      <a class="btn btn-warning btn-xl text-uppercase js-scroll-trigger scroll" href="{% url 'accounts:login' %}">Iniciar sesión</a>
       {% else %}
-      <a class="btn btn-warning btn-xl text-uppercase js-scroll-trigger scroll d-none d-sm-block" href="#go">Crea una nueva auditoria</a>
+      <div class="row justify-content-center">
+        <a class="btn btn-warning btn-xl text-uppercase js-scroll-trigger col-md-4 scroll d-none d-md-block" href="#go">Crea una nueva auditoria</a>
+        
+      </div>
       <a class="btn btn-warning btn text-uppercase js-scroll-trigger scroll d-block btn-xl d-sm-none" href="#go">Nueva auditoria</a>
       {% endif %}
     </div>
