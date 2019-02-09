@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block title %}
-    Audits
+Audits
 {% endblock title %}
 {% block container %}
 <div class="container" style="margin-top: 5rem;">
@@ -10,71 +10,71 @@
 		<h5>Selecciona el proceso que vas a auditar.</h5>
 	</div>
 	<div class="container">
-	<!--<a href="" class="btn btn-success btn-sm btn-block text-uppercase"><i class="fas fa-plus pr-1"></i>Crear nueva Auditoria</a>-->
+		<!--<a href="" class="btn btn-success btn-sm btn-block text-uppercase"><i class="fas fa-plus pr-1"></i>Crear nueva Auditoria</a>-->
 	</div>
-		{% for audit in audits %}
-			<div class="row justify-content-center">
-				<div class="col-sm-12 col-md-10 col-lg-8">
-				<div class="card mt-4 ml-4 mr-4">
-				  <div class="card-header">
-				  	<div class="row">
-					  		<div class="col-sm-12 col-md-9 col-lg-9">
-						    <span class="align-middle text-uppercase font-weight-bold"><i class="fas fa-cog pr-1"></i>Proceso a auditar: </span>
-						    <span class="align-middle">{{audit|title}}</span>
+	{% for audit in audits %}
+	<div class="row justify-content-center">
+		<div class="col-sm-12 col-md-10 col-lg-8">
+			<div class="card mt-4 ml-4 mr-4">
+				<div class="card-header">
+					<div class="row">
+						<div class="col-sm-12 col-md-9 col-lg-9">
+							<span class="align-middle text-uppercase font-weight-bold"><i class="fas fa-cog pr-1"></i>Proceso a auditar: </span>
+							<span class="align-middle">{{audit|title}}</span>
 						</div>
-					    <div class="col">
-						    <!--Button for desktop-->
-						    {% if audit.rule %}
-						    <a href="{% url 'audit:rules' audit.pk %}" class="btn btn-warning float-right btn-sm d-none d-sm-none d-md-block"><i class="far fa-eye pr-1"></i>Revisar</a>
-						    {% endif %}
-						 	{% if not audit.rule %}
-					    	<a href="{% url 'audit:create_rule' %}" class="btn btn-warning float-right btn-sm d-none d-sm-none d-md-block"><i class="fas fa-plus pr-1"></i>Asignar</a>
-					    	{% endif %}
+						<div class="col">
+							<!--Button for desktop-->
+							{% if audit.rule %}
+							<a href="{% url 'audit:rules' audit.pk %}" class="btn btn-warning float-right btn-sm d-none d-sm-none d-md-block"><i class="far fa-eye pr-1"></i>Revisar</a>
+							{% endif %}
+							{% if not audit.rule %}
+							<a href="{% url 'audit:create_rule' %}" class="btn btn-warning float-right btn-sm d-none d-sm-none d-md-block"><i class="fas fa-plus pr-1"></i>Asignar</a>
+							{% endif %}
 						</div>
-				    </div>
-				  </div>
-				  {% if not audit.rule %}
-				  <div class="alert alert-danger m-0 p-0 text-center" role="alert">
-					  <small>Actualmente este proceso no tiene normas enlazadas. Por favor asigne una nueva.</small>
+					</div>
+				</div>
+				{% if not audit.rule %}
+				<div class="alert alert-danger m-0 p-0 text-center" role="alert">
+					<small>Actualmente este proceso no tiene normas enlazadas. Por favor asigne una nueva.</small>
+				</div>
+				{% endif %}
+				<div class="card-body">
+
+					<h6 class="card-title"><i class="fas fa-user-tie pr-1"></i>Persona encargada del proceso: {{audit.audited_name|title}}</h6>
+					<p class="card-text m-0 font-weight-bold"><i class="fas fa-location-arrow pr-1"></i>Alcance de la auditoria: </p>
+					<small class="card-text">{{audit.audit_scope|capfirst}}.</small>
+					{% if audit.rule %}
+					<div class="mt-3">
+						<a class="btn btn-info float-right btn-sm col" href="{% url 'audit:detail' audit.pk %}"><i class="far fa-chart-bar pr-1"></i>Ver Estadisticas</a>
 					</div>
 					{% endif %}
-				  <div class="card-body">
-
-				    <h6 class="card-title"><i class="fas fa-user-tie pr-1"></i>Persona encargada del proceso: {{audit.audited_name|title}}</h6>
-				    <p class="card-text m-0 font-weight-bold"><i class="fas fa-location-arrow pr-1"></i>Alcance de la auditoria: </p>
-				    <small class="card-text">{{audit.audit_scope|capfirst}}.</small>
-				    {% if audit.rule %}
-				    <div class="mt-3">
-				    <a class="btn btn-info float-right btn-sm col" href="{% url 'audit:detail' audit.pk %}"><i class="far fa-chart-bar pr-1"></i>Ver Estadisticas</a>
-				    </div>
-				    {% endif %}
 
 
-				  </div>
-				  <!--Button for mobile-->
-				  {% if audit.rule %}
-				  <a href="{% url 'audit:rules' audit.pk %}" class="btn btn-primary btn-sm d-block d-sm-block d-md-none"><i class="far fa-eye pr-1"></i>Revisar</a>
-				  {% endif %}
-				  {% if not audit.rule %}
-				  <a href="{% url 'audit:create_rule' %}" class="btn btn-primary btn-sm d-block d-sm-block d-md-none"><i class="fas fa-plus pr-1"></i>Asignar</a>
-				  {% endif %}
 				</div>
+				<!--Button for mobile-->
+				{% if audit.rule %}
+				<a href="{% url 'audit:rules' audit.pk %}" class="btn btn-primary btn-sm d-block d-sm-block d-md-none"><i class="far fa-eye pr-1"></i>Revisar</a>
+				{% endif %}
+				{% if not audit.rule %}
+				<a href="{% url 'audit:create_rule' %}" class="btn btn-primary btn-sm d-block d-sm-block d-md-none"><i class="fas fa-plus pr-1"></i>Asignar</a>
+				{% endif %}
 			</div>
 		</div>
+	</div>
 	{% endfor %}
-  <ul class="pagination float-right">
-    {% if page_obj.has_previous %}
-        
-      <li class="waves-effect"><a href="?page={{page_obj.previous_page_number}}"><i class="fas fa-chevron-circle-left p-1"></i></a></li>
-    
-    {% endif %}
-    <li class="active"><a href="">{{page_obj.number}} of {{page_obj.paginator.num_pages}}</a></li>
-    {% if page_obj.has_next %}
-        
-      <li class="waves-effect"><a href="?page={{page_obj.next_page_number}}"><i class="fas fa-chevron-circle-right p-1"></i></a></li>
-    
-    {% endif %}
-  </ul>
-</div>
+	<ul class="pagination float-right">
+		{% if page_obj.has_previous %}
 		
+		<li class="waves-effect"><a href="?page={{page_obj.previous_page_number}}"><i class="fas fa-chevron-circle-left p-1"></i></a></li>
+		
+		{% endif %}
+		<li class="active"><a href="">{{page_obj.number}} of {{page_obj.paginator.num_pages}}</a></li>
+		{% if page_obj.has_next %}
+		
+		<li class="waves-effect"><a href="?page={{page_obj.next_page_number}}"><i class="fas fa-chevron-circle-right p-1"></i></a></li>
+		
+		{% endif %}
+	</ul>
+</div>
+
 {% endblock container %}
