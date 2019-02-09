@@ -11,4 +11,5 @@ urlpatterns = [
 	path('new/rule/', views.RuleCreateView.as_view(),name='create_rule'),
 	path('new/numeral', views.NumeralCreateView.as_view(),name='create_numeral'),
 	path('new/question', views.QuestionCreateView.as_view(), name='create_question'),
+
 ]
